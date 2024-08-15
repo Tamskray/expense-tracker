@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { Expense } from "../../../store/reducers/expenseSlice";
+import { Expense } from "@store/reducers/expenseSlice";
 
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 

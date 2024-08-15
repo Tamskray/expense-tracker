@@ -1,7 +1,8 @@
 import { Navigate } from "react-router-dom";
 
-import { useAppSelector } from "../hooks/redux";
-import { selectIsLoggedIn } from "../store/reducers/userSlice";
+import { selectIsLoggedIn } from "@store/reducers/userSlice";
+
+import { useAppSelector } from "@hooks/redux";
 
 interface PrivateRouteProps {
   component: React.ComponentType;

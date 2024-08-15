@@ -1,12 +1,15 @@
-import { ChangeEvent, useState, type FC } from "react";
-import { useAppDispatch } from "../../../hooks/redux";
-import { addExpense, Transaction } from "../../../store/reducers/expenseSlice";
-import RadioBtnGroup from "./RadioBtnGroup";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ChangeEvent, type FC, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { Transaction, addExpense } from "@store/reducers/expenseSlice";
+
+import { useAppDispatch } from "@hooks/redux";
+
+import RadioBtnGroup from "../RadioBtn/RadioBtnGroup";
+import { ExpenseFormValues, expenseFormSchema } from "./expenseFormSchema";
 
 import styles from "./ExpenseForm.module.css";
-import { useForm } from "react-hook-form";
-import { expenseFormSchema, ExpenseFormValues } from "./expenseFormSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 const ExpenseForm: FC = () => {
   const dispatch = useAppDispatch();
@@ -23,10 +26,6 @@ const ExpenseForm: FC = () => {
 
   const { errors } = formState;
 
-  // const [description, setDescription] = useState("");
-  // const [amount, setAmount] = useState(0);
-  // const [category, setCategory] = useState("");
-
   const [transactionType, setTransactionType] = useState<Transaction>("income");
 
   const handleTransactionChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +33,6 @@ const ExpenseForm: FC = () => {
   };
 
   const onSubmit = (values: ExpenseFormValues) => {
-    // e.preventDefault();
     console.log(values);
     dispatch(
       addExpense({
@@ -43,7 +41,7 @@ const ExpenseForm: FC = () => {
         amount: values.amount,
         category: values.category,
         transaction_type: transactionType,
-      })
+      }),
     );
   };
 
@@ -57,26 +55,16 @@ const ExpenseForm: FC = () => {
           type="text"
           placeholder="description"
           {...register("description")}
-          // value={description}
-          // onChange={(e) => setDescription(e.target.value)}
         />
         <span>{errors.description?.message}</span>
         <input
           type="number"
           placeholder="amount"
           {...register("amount", { valueAsNumber: true })}
-          // value={amount}
-          // onChange={(e) => setAmount(parseInt(e.target.value))}
         />
         <span>{errors.amount?.message}</span>
 
-        <input
-          type="text"
-          placeholder="category"
-          {...register("category")}
-          // value={category}
-          // onChange={(e) => setCategory(e.target.value)}
-        />
+        <input type="text" placeholder="category" {...register("category")} />
         <span>{errors.category?.message}</span>
 
         <RadioBtnGroup

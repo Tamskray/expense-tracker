@@ -4,9 +4,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import RestrictedRoute from "./RestrictedRoute";
 
-const ExpensesPage = lazy(() => import("../pages/Expenses/ExpensesPage"));
-const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
-const Layout = lazy(() => import("../pages/Layout/Layout"));
+const ExpensesPage = lazy(() => import("@pages/Expenses/ExpensesPage"));
+const LoginPage = lazy(() => import("@pages/Login/LoginPage"));
+const Layout = lazy(() => import("@pages/Layout/Layout"));
 
 const router = createBrowserRouter([
   {
@@ -15,20 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <PrivateRoute component={ExpensesPage} redirectTo="/login" />,
-        // element: (
-        //   <Suspense fallback={<div>Loading...</div>}>
-        //     <ExpensesPage />
-        //   </Suspense>
-        // ),
       },
       {
         path: "/login",
         element: <RestrictedRoute component={LoginPage} redirectTo="/" />,
-        // element: (
-        //   <Suspense fallback={<div>Loading...</div>}>
-        //     <LoginPage />
-        //   </Suspense>
-        // ),
       },
     ],
   },

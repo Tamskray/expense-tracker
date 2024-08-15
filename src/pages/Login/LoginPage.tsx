@@ -1,12 +1,14 @@
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema, FormValues } from "./formSchema";
-
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
+import { login } from "@store/reducers/userSlice";
+
+import { useAppDispatch } from "@hooks/redux";
+
+import { FormValues, formSchema } from "./formSchema";
+
 import styles from "./LoginPage.module.css";
-import { useAppDispatch } from "../../hooks/redux";
-import { login } from "../../store/reducers/userSlice";
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();

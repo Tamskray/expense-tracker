@@ -1,9 +1,9 @@
 import { Suspense } from "react";
-
 import { Navigate } from "react-router-dom";
 
-import { useAppSelector } from "../hooks/redux";
-import { selectIsLoggedIn } from "../store/reducers/userSlice";
+import { selectIsLoggedIn } from "@store/reducers/userSlice";
+
+import { useAppSelector } from "@hooks/redux";
 
 interface RestrictedRouteProps {
   component: React.ComponentType;

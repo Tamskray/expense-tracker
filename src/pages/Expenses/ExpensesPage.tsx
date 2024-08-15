@@ -1,12 +1,12 @@
 import type { FC } from "react";
 import { Link } from "react-router-dom";
 
-import { useAppSelector } from "../../hooks/redux";
+import { selectExpenses } from "@store/reducers/expenseSlice";
 
-import { selectExpenses } from "../../store/reducers/expenseSlice";
+import { useAppSelector } from "@hooks/redux";
 
-import ExpensesList from "../../components/Expenses/ExpensesList/ExpensesList";
-import ExpenseForm from "../../components/Expenses/AddExpenseForm/ExpenseForm";
+import ExpenseForm from "@components/Expenses/AddExpenseForm/ExpenseForm/ExpenseForm";
+import ExpensesList from "@components/Expenses/ExpensesList/ExpensesList";
 
 const ExpensesPage: FC = () => {
   const expenses = useAppSelector(selectExpenses);

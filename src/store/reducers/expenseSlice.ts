@@ -31,7 +31,7 @@ export const expenseSlice = createSlice({
     },
     removeExpense: (state, action: PayloadAction<Expense>) => {
       state.expenses = state.expenses.filter(
-        (expense) => expense.id !== action.payload.id
+        (expense) => expense.id !== action.payload.id,
       );
     },
   },

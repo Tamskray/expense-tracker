@@ -1,0 +1,13 @@
+{
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^components/(.*)$",
+    "^@store/(.*)$",
+    "^@hooks/(.*)$",
+    "^@components/(.*)$",
+    "^[./](?!.*\\.(css|scss|sass|module\\.css|module\\.scss|module\\.sass)$)",
+    ".*\\.(css|scss|sass|module\\.css|module\\.scss|module\\.sass)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
