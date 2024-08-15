@@ -1,0 +1,46 @@
+.expense-item-container {
+  padding: 10px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.income {
+  background-color: green;
+}
+
+.expense {
+  background-color: brown;
+}
+
+.category {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.description {
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.amount {
+  margin: 0;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.amount span {
+  font-weight: 600;
+}

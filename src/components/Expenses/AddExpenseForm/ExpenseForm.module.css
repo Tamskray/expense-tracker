@@ -1,0 +1,23 @@
+.expense-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  gap: 1rem;
+}
+
+.expense-form input {
+  padding: 10px;
+}
+
+.expense-form button {
+  padding: 10px;
+  width: 90%;
+  align-self: center;
+}
