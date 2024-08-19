@@ -5,10 +5,13 @@ import { selectExpenses } from "@store/reducers/expenseSlice";
 
 import { useAppSelector } from "@hooks/redux";
 
+import { useTranslation } from "react-i18next";
+
 import ExpenseForm from "@components/Expenses/AddExpenseForm/ExpenseForm/ExpenseForm";
 import ExpensesList from "@components/Expenses/ExpensesList/ExpensesList";
 
 const ExpensesPage: FC = () => {
+  const { t } = useTranslation();
   const expenses = useAppSelector(selectExpenses);
   const userName = useAppSelector((state) => state.user.name);
 
@@ -25,10 +28,14 @@ const ExpensesPage: FC = () => {
   return (
     <>
       <h2>Hello {userName}</h2>
-      <h2>Your balance</h2>
+      <h2>{t("balance")}</h2>
       <h1>{balance} ₴</h1>
-      <h2>Income: {totalIncome}</h2>
-      <h2>Expense: {totalExpenses}</h2>
+      <h2>
+        {t("income")}: {totalIncome}
+      </h2>
+      <h2>
+        {t("expense")}: {totalExpenses}
+      </h2>
 
       <ExpenseForm />
 

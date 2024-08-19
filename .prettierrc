@@ -4,6 +4,7 @@
     "^components/(.*)$",
     "^@store/(.*)$",
     "^@hooks/(.*)$",
+    "^react-i18next$",
     "^@components/(.*)$",
     "^[./](?!.*\\.(css|scss|sass|module\\.css|module\\.scss|module\\.sass)$)",
     ".*\\.(css|scss|sass|module\\.css|module\\.scss|module\\.sass)$"

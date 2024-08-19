@@ -2,6 +2,8 @@ import type { FC } from "react";
 
 import { Expense } from "@store/reducers/expenseSlice";
 
+import { useTranslation } from "react-i18next";
+
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
 import styles from "./ExpenseList.module.css";
@@ -11,8 +13,10 @@ interface ExpensesListProps {
 }
 
 const ExpensesList: FC<ExpensesListProps> = ({ expenses }) => {
+  const { t } = useTranslation();
+
   if (!expenses.length) {
-    return <h2>No expenses yet</h2>;
+    return <h2>{t("emptyTransactions")}</h2>;
   }
 
   return (

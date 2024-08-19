@@ -6,12 +6,16 @@ import { Transaction, addExpense } from "@store/reducers/expenseSlice";
 
 import { useAppDispatch } from "@hooks/redux";
 
+import { useTranslation } from "react-i18next";
+
 import RadioBtnGroup from "../RadioBtn/RadioBtnGroup";
 import { ExpenseFormValues, expenseFormSchema } from "./expenseFormSchema";
 
 import styles from "./ExpenseForm.module.css";
 
 const ExpenseForm: FC = () => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
 
   const { register, handleSubmit, formState } = useForm<ExpenseFormValues>({
@@ -53,18 +57,23 @@ const ExpenseForm: FC = () => {
       >
         <input
           type="text"
-          placeholder="description"
+          placeholder={t("descriptionPlaceholder")}
           {...register("description")}
         />
         <span>{errors.description?.message}</span>
+
         <input
           type="number"
-          placeholder="amount"
+          step="0.01"
           {...register("amount", { valueAsNumber: true })}
         />
         <span>{errors.amount?.message}</span>
 
-        <input type="text" placeholder="category" {...register("category")} />
+        <input
+          type="text"
+          placeholder={t("categoryPlaceholder")}
+          {...register("category")}
+        />
         <span>{errors.category?.message}</span>
 
         <RadioBtnGroup
@@ -72,7 +81,7 @@ const ExpenseForm: FC = () => {
           handleChange={handleTransactionChange}
         />
 
-        <button type="submit">Add transaction</button>
+        <button type="submit">{t("addTransaction")}</button>
       </form>
     </section>
   );

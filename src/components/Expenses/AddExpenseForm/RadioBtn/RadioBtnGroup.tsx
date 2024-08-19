@@ -1,5 +1,7 @@
 import { ChangeEvent, type FC } from "react";
 
+import { useTranslation } from "react-i18next";
+
 import styles from "./RadioBtnGroup.module.css";
 
 interface RadioBtnGroupProps {
@@ -11,6 +13,8 @@ const RadioBtnGroup: FC<RadioBtnGroupProps> = ({
   selectedValue,
   handleChange,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles["radio-btn-container"]}>
       <label>
@@ -21,7 +25,7 @@ const RadioBtnGroup: FC<RadioBtnGroupProps> = ({
           checked={selectedValue === "income"}
           onChange={handleChange}
         />
-        Income
+        {t("income")}
       </label>
 
       <label>
@@ -32,7 +36,7 @@ const RadioBtnGroup: FC<RadioBtnGroupProps> = ({
           checked={selectedValue === "expense"}
           onChange={handleChange}
         />
-        Expense
+        {t("expense")}
       </label>
     </div>
   );
