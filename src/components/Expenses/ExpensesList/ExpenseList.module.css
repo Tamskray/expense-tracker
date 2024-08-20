@@ -5,3 +5,15 @@
   align-items: center;
   gap: 1rem;
 }
+
+.history {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.history h2 {
+  margin: 2rem 0 0 2rem;
+}

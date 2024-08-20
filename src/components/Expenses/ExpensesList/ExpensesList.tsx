@@ -20,11 +20,17 @@ const ExpensesList: FC<ExpensesListProps> = ({ expenses }) => {
   }
 
   return (
-    <div className={styles["expense-list-container"]}>
-      {expenses.map((item) => (
-        <ExpenseItem key={item.id} item={item} />
-      ))}
-    </div>
+    <>
+      <div className={styles.history}>
+        <h2>{t("history")}</h2>
+        <hr />
+      </div>
+      <div className={styles["expense-list-container"]}>
+        {expenses.map((item) => (
+          <ExpenseItem key={item.id} item={item} />
+        ))}
+      </div>
+    </>
   );
 };
 

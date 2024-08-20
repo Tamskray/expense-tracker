@@ -1,0 +1,47 @@
+.general-info-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.general-info-container > div {
+  background-color: white;
+  color: #201325;
+  text-align: center;
+  line-height: 75px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  line-height: 30px;
+  box-shadow:
+    rgba(247, 243, 245, 0.4) 0px 5px,
+    rgba(223, 220, 222, 0.4) 0px 5px,
+    rgba(199, 197, 198, 0.4) 0px 5px,
+    rgba(199, 197, 198, 0.4) 0px 10px;
+}
+
+.general-info-container > div span {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Trebuchet MS", sans-serif;
+  text-transform: uppercase;
+}
+
+.general-info-container > div h2 {
+  margin: 0 0 8px 0;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.income {
+  color: #109e31;
+}
+
+.expense {
+  color: rgb(224, 74, 74);
+}

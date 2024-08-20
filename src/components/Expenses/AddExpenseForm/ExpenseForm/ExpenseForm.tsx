@@ -8,6 +8,8 @@ import { useAppDispatch } from "@hooks/redux";
 
 import { useTranslation } from "react-i18next";
 
+import ButtonHex from "@components/UI/Button/ButtonHex";
+
 import RadioBtnGroup from "../RadioBtn/RadioBtnGroup";
 import { ExpenseFormValues, expenseFormSchema } from "./expenseFormSchema";
 
@@ -50,40 +52,49 @@ const ExpenseForm: FC = () => {
   };
 
   return (
-    <section className={styles["expense-section"]}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={styles["expense-form"]}
-      >
-        <input
-          type="text"
-          placeholder={t("descriptionPlaceholder")}
-          {...register("description")}
-        />
-        <span>{errors.description?.message}</span>
+    <>
+      <div className={styles["add-new-tranaction-header"]}>
+        <h2>{t("addTransaction")}</h2>
+        <hr />
+      </div>
 
-        <input
-          type="number"
-          step="0.01"
-          {...register("amount", { valueAsNumber: true })}
-        />
-        <span>{errors.amount?.message}</span>
+      <section className={styles["expense-section"]}>
+        <form
+          id="expense-form"
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles["expense-form"]}
+        >
+          <input
+            type="text"
+            placeholder={t("descriptionPlaceholder")}
+            {...register("description")}
+          />
+          <span>{errors.description?.message}</span>
 
-        <input
-          type="text"
-          placeholder={t("categoryPlaceholder")}
-          {...register("category")}
-        />
-        <span>{errors.category?.message}</span>
+          <input
+            type="number"
+            step="0.01"
+            {...register("amount", { valueAsNumber: true })}
+          />
+          <span>{errors.amount?.message}</span>
 
-        <RadioBtnGroup
-          selectedValue={transactionType}
-          handleChange={handleTransactionChange}
-        />
+          <input
+            type="text"
+            placeholder={t("categoryPlaceholder")}
+            {...register("category")}
+          />
+          <span>{errors.category?.message}</span>
 
-        <button type="submit">{t("addTransaction")}</button>
-      </form>
-    </section>
+          <RadioBtnGroup
+            selectedValue={transactionType}
+            handleChange={handleTransactionChange}
+          />
+
+          <ButtonHex formId="expense-form" />
+          {/* <button type="submit">{t("addTransaction")}</button> */}
+        </form>
+      </section>
+    </>
   );
 };
 
