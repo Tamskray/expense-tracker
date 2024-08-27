@@ -4,7 +4,7 @@ import { Expense } from "@store/reducers/expenseSlice";
 
 import { useTranslation } from "react-i18next";
 
-import ExpenseItem from "../ExpenseItem/ExpenseItem";
+import ExpenseList from "./ExpenseList";
 
 import styles from "./ExpenseList.module.css";
 
@@ -12,7 +12,7 @@ interface ExpensesListProps {
   expenses: Expense[];
 }
 
-const ExpensesList: FC<ExpensesListProps> = ({ expenses }) => {
+const ExpensesListContainer: FC<ExpensesListProps> = ({ expenses }) => {
   const { t } = useTranslation();
 
   if (!expenses.length) {
@@ -26,12 +26,10 @@ const ExpensesList: FC<ExpensesListProps> = ({ expenses }) => {
         <hr />
       </div>
       <div className={styles["expense-list-container"]}>
-        {expenses.map((item) => (
-          <ExpenseItem key={item.id} item={item} />
-        ))}
+        <ExpenseList expenses={expenses} />
       </div>
     </>
   );
 };
 
-export default ExpensesList;
+export default ExpensesListContainer;

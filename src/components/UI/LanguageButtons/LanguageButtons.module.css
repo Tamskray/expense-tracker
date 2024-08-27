@@ -1,0 +1,27 @@
+.language-buttons {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  gap: 0.2rem;
+}
+
+.language-buttons button {
+  background: linear-gradient(-45deg, #ff4641, #e77d63);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: transform 0.05s ease-in-out;
+  cursor: pointer;
+  color: #ffd5cb;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.language-buttons button:hover {
+  opacity: 80%;
+}
+
+.language-buttons button:active {
+  transform: scale(0.9);
+}

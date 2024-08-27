@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 
+import LanguageButtons from "@components/UI/LanguageButtons/LanguageButtons";
+
 const Layout = () => {
   const { i18n } = useTranslation();
 
@@ -14,8 +16,7 @@ const Layout = () => {
     <>
       <header></header>
       <main>
-        <button onClick={() => changeLanguage("en")}>EN</button>
-        <button onClick={() => changeLanguage("ua")}>UA</button>
+        <LanguageButtons changeLanguage={changeLanguage} />
         <Outlet />
       </main>
       <footer></footer>

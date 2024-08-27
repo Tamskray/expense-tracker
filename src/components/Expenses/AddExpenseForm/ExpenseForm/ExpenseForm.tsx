@@ -91,7 +91,6 @@ const ExpenseForm: FC = () => {
           />
 
           <ButtonHex formId="expense-form" />
-          {/* <button type="submit">{t("addTransaction")}</button> */}
         </form>
       </section>
     </>

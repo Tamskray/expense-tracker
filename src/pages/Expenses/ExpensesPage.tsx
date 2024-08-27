@@ -7,7 +7,7 @@ import { useAppSelector } from "@hooks/redux";
 
 import ExpenseForm from "@components/Expenses/AddExpenseForm/ExpenseForm/ExpenseForm";
 import ExpenseInfo from "@components/Expenses/ExpenseInfo/ExpenseInfo";
-import ExpensesList from "@components/Expenses/ExpensesList/ExpensesList";
+import ExpensesListContainer from "@components/Expenses/ExpensesList/ExpensesListContainer";
 
 const ExpensesPage: FC = () => {
   const expenses = useAppSelector(selectExpenses);
@@ -16,11 +16,11 @@ const ExpensesPage: FC = () => {
     <>
       <ExpenseInfo />
       <ExpenseForm />
-      <ExpensesList expenses={expenses} />
+      <ExpensesListContainer expenses={expenses} />
 
-      <Link to="/login">
+      {/* <Link to="/login">
         <b>Login</b>
-      </Link>
+      </Link> */}
     </>
   );
 };

@@ -32,6 +32,11 @@
   align-self: center;
 }
 
+.expense-form span {
+  color: brown;
+  font-weight: bold;
+}
+
 hr {
   border: 1px solid white;
   width: 90%;

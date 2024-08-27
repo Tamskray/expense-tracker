@@ -11,7 +11,7 @@ import styles from "./ExpenseInfo.module.css";
 const ExpenseInfo: FC = () => {
   const { t } = useTranslation();
   const expenses = useAppSelector(selectExpenses);
-  const userName = useAppSelector((state) => state.user.name);
+  // const userName = useAppSelector((state) => state.user.name);
 
   const totalIncome = expenses
     .filter((expense) => expense.transaction_type === "income")
@@ -25,17 +25,19 @@ const ExpenseInfo: FC = () => {
 
   return (
     <>
-      <h2>Hello {userName}</h2>
-      <h2>{t("balance")}</h2>
-      <h1>{balance} ₴</h1>
+      {/* <h2>Hello {userName}</h2> */}
+      <div className={styles["balance-title"]}>
+        <h2>{t("balance")}</h2>
+        <h1>{balance.toFixed(2)} ₴</h1>
+      </div>
       <div className={styles["general-info-container"]}>
         <div>
           <span>{t("income")}</span>
-          <h2 className={styles.income}>{totalIncome} ₴</h2>
+          <h2 className={styles.income}>{totalIncome.toFixed(2)} ₴</h2>
         </div>
         <div>
           <span>{t("expense")}</span>
-          <h2 className={styles.expense}>{totalExpenses} ₴</h2>
+          <h2 className={styles.expense}>{totalExpenses.toFixed(2)} ₴</h2>
         </div>
       </div>
     </>

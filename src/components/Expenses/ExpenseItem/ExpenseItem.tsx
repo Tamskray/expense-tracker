@@ -20,10 +20,14 @@ const ExpenseItem: FC<ExpenseItemProps> = ({ item }) => {
   const containerBackground =
     item.transaction_type === "income" ? styles.income : styles.expense;
 
+  const deleteBtnColor =
+    item.transaction_type === "income"
+      ? styles["delete-buttob-income"]
+      : styles["delete-buttob-expense"];
+
   return (
     <>
       <div
-        onClick={() => handleRemoveExpense()}
         className={`${styles["expense-item-container"]} ${containerBackground}`}
       >
         <div className={styles["expense-item-info"]}>
@@ -35,6 +39,13 @@ const ExpenseItem: FC<ExpenseItemProps> = ({ item }) => {
           {item.transaction_type === "income" ? <span>+</span> : <span>-</span>}
           {item.amount}
         </h2>
+
+        <button
+          className={`${styles["delete-button"]}  ${deleteBtnColor}`}
+          onClick={() => handleRemoveExpense()}
+        >
+          &times;
+        </button>
       </div>
     </>
   );

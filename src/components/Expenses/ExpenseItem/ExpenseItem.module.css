@@ -6,6 +6,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition:
+    transform 0.3s ease,
+    margin-right 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.expense-item-container:hover {
+  transform: translateX(-20px);
 }
 
 .expense-item-info {
@@ -16,7 +25,7 @@
 }
 
 .income {
-  background-color: green;
+  background-color: #109e31;
 }
 
 .expense {
@@ -39,8 +48,47 @@
   margin: 0;
   font-weight: 600;
   font-size: 24px;
+  transition: margin-right 0.3s ease;
 }
 
 .amount span {
   font-weight: 600;
+}
+
+.delete-button {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.3s ease;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-size: 48px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-buttob-income {
+  color: #be1523;
+}
+
+.delete-buttob-expense {
+  color: #ffd5cb;
+}
+
+.expense-item-container:hover .delete-button {
+  right: 10px;
+}
+
+.delete-button:focus {
+  outline: none;
+}
+
+.delete-button:hover {
+  color: darkred;
+}
+
+.expense-item-container:hover .amount {
+  margin-right: 50px;
 }
