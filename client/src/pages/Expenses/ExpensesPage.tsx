@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { Link } from "react-router-dom";
 
 import { selectExpenses } from "@store/reducers/expenseSlice";
 
@@ -17,10 +16,6 @@ const ExpensesPage: FC = () => {
       <ExpenseInfo />
       <ExpenseForm />
       <ExpensesListContainer expenses={expenses} />
-
-      {/* <Link to="/login">
-        <b>Login</b>
-      </Link> */}
     </>
   );
 };

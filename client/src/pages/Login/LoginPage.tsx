@@ -1,10 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 
-import { login } from "@store/reducers/userSlice";
+import { getExpenses } from "@store/reducers/expenseSlice";
+import {
+  login,
+  selectAccessToken,
+  selectUserId,
+} from "@store/reducers/userSlice";
 
-import { useAppDispatch } from "@hooks/redux";
+import { useAppDispatch, useAppSelector } from "@hooks/redux";
 
 import { FormValues, formSchema } from "./formSchema";
 
@@ -12,6 +17,14 @@ import styles from "./LoginPage.module.css";
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
+  const userId = useAppSelector(selectUserId);
+  const token = useAppSelector(selectAccessToken);
+
+  useEffect(() => {
+    if (userId !== null) {
+      dispatch(getExpenses({ userId, token }));
+    }
+  }, [userId, token, dispatch]);
 
   const { register, handleSubmit, formState } = useForm<FormValues>({
     defaultValues: {
@@ -24,9 +37,18 @@ const LoginPage = () => {
 
   const { errors } = formState;
 
-  const onSubmit = (values: FormValues) => {
-    console.log(values);
-    dispatch(login({ name: values.name, email: values.email }));
+  const onSubmit = async (values: FormValues) => {
+    try {
+      await dispatch(
+        login({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        }),
+      );
+    } catch (error) {
+      console.log("Login error", error);
+    }
   };
 
   return (
@@ -36,7 +58,6 @@ const LoginPage = () => {
           onSubmit={handleSubmit(onSubmit)}
           className={styles["login-form"]}
         >
-          <label htmlFor="name">Name</label>
           <input
             {...register("name")}
             type="text"
@@ -45,7 +66,6 @@ const LoginPage = () => {
           />
           <span>{errors.name?.message}</span>
 
-          <label htmlFor="email">Email</label>
           <input
             {...register("email")}
             type="email"
@@ -54,7 +74,6 @@ const LoginPage = () => {
           />
           <span>{errors.email?.message}</span>
 
-          <label htmlFor="password">Password</label>
           <input
             {...register("password")}
             type="password"
@@ -68,10 +87,6 @@ const LoginPage = () => {
           </button>
         </form>
       </section>
-
-      <Link to="/">
-        <b>Expenses</b>
-      </Link>
     </>
   );
 };

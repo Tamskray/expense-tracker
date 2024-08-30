@@ -12,8 +12,6 @@ interface ExpenseListProps {
 }
 
 const ExpenseList: FC<ExpenseListProps> = ({ expenses }) => {
-  console.log(expenses);
-
   const Row = ({
     index,
     style,

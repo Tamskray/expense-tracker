@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { fetchExpenses } from "@utils/expenses/fetchExpenses";
 
 import type { RootState } from "../store";
 
@@ -22,6 +23,21 @@ const initialState: ExpenseInitialState = {
   expenses: [],
 };
 
+export const getExpenses = createAsyncThunk<
+  Expense[],
+  { userId: number; token: string }
+>("expenses/fetch", async ({ userId, token }, { rejectWithValue }) => {
+  try {
+    const response: Expense[] = await fetchExpenses(userId, token);
+    return response;
+  } catch (error) {
+    return rejectWithValue({
+      message: "Failed to fetch expenses",
+      err: error,
+    });
+  }
+});
+
 export const expenseSlice = createSlice({
   name: "expenses",
   initialState,
@@ -34,6 +50,14 @@ export const expenseSlice = createSlice({
         (expense) => expense.id !== action.payload.id,
       );
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(
+      getExpenses.fulfilled,
+      (state, action: PayloadAction<Expense[]>) => {
+        state.expenses = action.payload;
+      },
+    );
   },
 });
 
