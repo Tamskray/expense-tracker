@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
+import { UserModule } from 'src/user/user.module';
 // import { AuthGuard } from './auth.guard';
 // import { APP_GUARD } from '@nestjs/core';
 // import { SetMetadata } from '@nestjs/common';
@@ -13,7 +13,7 @@ import { jwtConstants } from './constants';
 
 @Module({
   imports: [
-    UsersModule,
+    UserModule,
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
