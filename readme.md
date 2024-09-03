@@ -1,5 +1,8 @@
 # Expense Tracker
 
+- **Frontend**: React with TypeScript, Redux-toolkit, react-hook-form with zod, axios, i18next, react-router-dom, react-window.
+- **Backend**: Nest, TypeORM with PostgreSQL.
+
 ## Overview
 
 Here are some screenshots of the application:
