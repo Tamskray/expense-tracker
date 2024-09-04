@@ -14,9 +14,8 @@ export class Expense extends AbstractEntity<Expense> {
   category: string;
 
   @Column()
-  // { type: 'enum', enum: ['income', 'expense'] }
   transaction_type: string;
 
-  @ManyToOne(() => User, (user) => user.expenses)
+  @ManyToOne(() => User, (user) => user.expenses, { onDelete: 'CASCADE' })
   user: User;
 }
