@@ -14,3 +14,5 @@ Here are some screenshots of the application:
 ![Add-Transaction](https://drive.google.com/uc?export=view&id=1vXF5eDxdCXQ74OUYp46K9zaToD85eH_s)
 
 ![Add-Transaction-Valid](https://drive.google.com/uc?export=view&id=1thfNp_V07anZ7XVlNtditJjn3CslIMhh)
+
+![Postman](https://drive.google.com/uc?export=view&id=1ubC9dxiHGw7xfWpCjoyseD5tsxs4cYwm)
