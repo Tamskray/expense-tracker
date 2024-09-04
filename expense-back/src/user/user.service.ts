@@ -12,6 +12,8 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    @InjectRepository(Expense)
+    private readonly expensesRepository: Repository<Expense>,
     private readonly entityManager: EntityManager,
   ) {}
 
@@ -66,6 +68,8 @@ export class UserService {
     });
 
     await this.entityManager.save(expense);
+
+    return expense;
   }
 
   async getExpenses(userId: number) {
@@ -74,5 +78,9 @@ export class UserService {
       relations: { expenses: true },
     });
     return user.expenses || [];
+  }
+
+  async deleteExpense(expenseId: number) {
+    await this.expensesRepository.delete({ id: expenseId });
   }
 }

@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { addExpenseToDB } from "@utils/expenses/addExpense";
+import { deleteExpenseFromDB } from "@utils/expenses/deleteExpense";
 import { fetchExpenses } from "@utils/expenses/fetchExpenses";
 
 import type { RootState } from "../store";
@@ -7,12 +9,16 @@ import type { RootState } from "../store";
 export type Transaction = "income" | "expense";
 
 export interface Expense {
-  id: string;
+  id?: number;
   description: string;
   amount: number;
   category: string;
   transaction_type: Transaction;
-  //   date: string;
+}
+
+interface AddExpensePaylod {
+  userId: number;
+  expense: Expense;
 }
 
 export interface ExpenseInitialState {
@@ -38,30 +44,67 @@ export const getExpenses = createAsyncThunk<
   }
 });
 
+export const addExpense = createAsyncThunk<Expense, AddExpensePaylod>(
+  "expenses/addExpense",
+  async ({ userId, expense }, { rejectWithValue }) => {
+    try {
+      const response = await addExpenseToDB(userId, expense);
+      console.log(response);
+
+      return response;
+    } catch (error) {
+      return rejectWithValue({
+        message: "Failed to fetch expenses",
+        err: error,
+      });
+    }
+  },
+);
+
+export const deleteExpense = createAsyncThunk<number, { expenseId: number }>(
+  "expenses/deleteExpense",
+  async ({ expenseId }, { rejectWithValue }) => {
+    try {
+      await deleteExpenseFromDB(expenseId);
+      return expenseId;
+    } catch (error) {
+      return rejectWithValue({
+        message: "Failed to delete expense",
+        err: error,
+      });
+    }
+  },
+);
+
 export const expenseSlice = createSlice({
   name: "expenses",
   initialState,
-  reducers: {
-    addExpense: (state, action: PayloadAction<Expense>) => {
-      state.expenses.push(action.payload);
-    },
-    removeExpense: (state, action: PayloadAction<Expense>) => {
-      state.expenses = state.expenses.filter(
-        (expense) => expense.id !== action.payload.id,
-      );
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      getExpenses.fulfilled,
-      (state, action: PayloadAction<Expense[]>) => {
-        state.expenses = action.payload;
-      },
-    );
+    builder
+      .addCase(
+        getExpenses.fulfilled,
+        (state, action: PayloadAction<Expense[]>) => {
+          state.expenses = action.payload;
+        },
+      )
+      .addCase(
+        addExpense.fulfilled,
+        (state, action: PayloadAction<Expense>) => {
+          state.expenses.push(action.payload);
+        },
+      )
+      .addCase(
+        deleteExpense.fulfilled,
+        (state, action: PayloadAction<number>) => {
+          state.expenses = state.expenses.filter(
+            (expense) => expense.id !== action.payload,
+          );
+        },
+      );
   },
 });
 
 export const selectExpenses = (state: RootState) => state.expense.expenses;
 
-export const { addExpense, removeExpense } = expenseSlice.actions;
 export default expenseSlice.reducer;

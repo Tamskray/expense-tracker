@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { Expense, removeExpense } from "@store/reducers/expenseSlice";
+import { Expense, deleteExpense } from "@store/reducers/expenseSlice";
 
 import { useAppDispatch } from "@hooks/redux";
 
@@ -14,7 +14,7 @@ const ExpenseItem: FC<ExpenseItemProps> = ({ item }) => {
   const dispatch = useAppDispatch();
 
   const handleRemoveExpense = () => {
-    dispatch(removeExpense(item));
+    if (item.id) dispatch(deleteExpense({ expenseId: item.id }));
   };
 
   const containerBackground =

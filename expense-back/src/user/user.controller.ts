@@ -58,4 +58,9 @@ export class UserController {
   async getExpenses(@Param('id') userId: number) {
     return this.userService.getExpenses(userId);
   }
+
+  @Delete(':id/expense')
+  async removeExpense(@Param('id') id: number) {
+    return this.userService.deleteExpense(id);
+  }
 }

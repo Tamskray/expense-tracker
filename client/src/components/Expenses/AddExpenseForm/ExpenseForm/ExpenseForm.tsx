@@ -3,8 +3,9 @@ import { ChangeEvent, type FC, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Transaction, addExpense } from "@store/reducers/expenseSlice";
+import { selectUserId } from "@store/reducers/userSlice";
 
-import { useAppDispatch } from "@hooks/redux";
+import { useAppDispatch, useAppSelector } from "@hooks/redux";
 
 import { useTranslation } from "react-i18next";
 
@@ -19,6 +20,7 @@ const ExpenseForm: FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
+  const userId = useAppSelector(selectUserId);
 
   const { register, handleSubmit, formState } = useForm<ExpenseFormValues>({
     defaultValues: {
@@ -40,15 +42,20 @@ const ExpenseForm: FC = () => {
 
   const onSubmit = (values: ExpenseFormValues) => {
     console.log(values);
-    dispatch(
-      addExpense({
-        id: "id" + Date.now(),
-        description: values.description,
-        amount: values.amount,
-        category: values.category,
-        transaction_type: transactionType,
-      }),
-    );
+    if (userId !== null) {
+      dispatch(
+        addExpense({
+          userId,
+          expense: {
+            // id: "id" + Date.now(),
+            description: values.description,
+            amount: values.amount,
+            category: values.category,
+            transaction_type: transactionType,
+          },
+        }),
+      );
+    }
   };
 
   return (

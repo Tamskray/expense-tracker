@@ -47,8 +47,6 @@ export const login = createAsyncThunk(
   },
 );
 
-// export const fetchUserProfile = createAsyncThunk()
-
 export const userSlice = createSlice({
   name: "user",
   initialState,
